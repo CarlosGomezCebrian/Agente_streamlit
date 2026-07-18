@@ -42,7 +42,7 @@ if archivo_cargado:
     st.dataframe(df.head())
 
     # LLM
-    GROQ_API_KEY = os.getenv("GROQ_API_KEY_2")
+    GROQ_API_KEY = os.getenv("GROQ_API_KEY")
     GROQ_MODEL_NAME = os.getenv("GROQ_MODEL_NAME")
     llm = ChatGroq(
         api_key=GROQ_API_KEY,
