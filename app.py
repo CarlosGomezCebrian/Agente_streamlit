@@ -117,7 +117,7 @@ if archivo_cargado:
    # PERGUNTA SOBRE LOS DATOS
     st.markdown("---")
     st.markdown("## 🔎 Preguntas sobre los datos")
-    pregunta_sobre_datos = st.text_input("Realiza una pregunta sobre los datos (ej: 'Cuál es el promedio de tiempo de entrega?')")
+    pregunta_sobre_datos = st.text_input("Realiza una pregunta sobre los datos (ej: 'Cuál es el promedio de ....')")
     if st.button("Responder pregunta", key="responder_pregunta_datos"):
         with st.spinner("Analizando los datos 🦜"):
             st.markdown(consultar_agente(pregunta_sobre_datos))
@@ -127,7 +127,7 @@ if archivo_cargado:
     st.markdown("---")
     st.markdown("## 📊 Crear gráfico con base en una pregunta")
 
-    pregunta_grafico = st.text_input("Qué deseas visualizar? (ej: 'Genera un gráfico del promedio de tiempo de entrega por clima.')")
+    pregunta_grafico = st.text_input("Qué deseas visualizar? (ej: 'Genera un gráfico del promedio ....')")
     if st.button("Generar gráfico", key="generar_grafico"):
         if not pregunta_grafico.strip():
             st.warning("Describe el gráfico que deseas generar.")
