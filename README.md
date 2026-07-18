@@ -25,7 +25,7 @@ Esta herramienta está diseñada para analistas, científicos de datos y equipos
 
 El proyecto se compone principalmente de la lógica de interfaz y el motor de herramientas del agente:
 
-1. **`app.py` (Principal):** Contiene la interfaz de Streamlit, la configuración del agente moderno de LangChain (`create_agent`), la lectura de variables de entorno y las acciones rápidas. El botón de gráficos llama de forma directa a la herramienta de visualización y muestra los errores en pantalla si no se puede generar la figura.
+1. **`app.py` (Principal):** Contiene la interfaz de Streamlit, la configuración del agente moderno de LangChain (`create_agent`), la lectura de variables de entorno y las acciones rápidas. Los botones de reportes y gráficos llaman de forma directa a sus herramientas para mostrar la salida completa; el de gráficos además muestra los errores en pantalla si no se puede generar la figura.
 2. **`herramientas.py` (Módulo):** Define las herramientas personalizadas (`@tool`) que el agente utiliza para interactuar con el DataFrame:
    - `informacion_df`: Extrae metadatos y crea un reporte general del dataset.
    - `resumen_estadistico`: Interpreta estadísticas descriptivas generadas por Pandas.

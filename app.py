@@ -3,7 +3,12 @@ import pandas as pd
 import os
 from langchain_groq import ChatGroq
 from langchain.agents import create_agent
-from herramientas import crear_herramientas, generar_grafico
+from herramientas import (
+    crear_herramientas,
+    generar_grafico,
+    informacion_df,
+    resumen_estadistico,
+)
 
 # Inicia la aplicación
 st.set_page_config(page_title="Asistente de Análisis de Datos con IA", layout="centered")
@@ -37,7 +42,7 @@ if archivo_cargado:
     st.dataframe(df.head())
 
     # LLM
-    GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+    GROQ_API_KEY = os.getenv("GROQ_API_KEY_2")
     GROQ_MODEL_NAME = os.getenv("GROQ_MODEL_NAME")
     llm = ChatGroq(
         api_key=GROQ_API_KEY,
@@ -72,7 +77,10 @@ if archivo_cargado:
     # Reporte de Informaciones Generales
     if st.button("📄 Reporte de Informaciones Generales", key="boton_reporte_general"):
         with st.spinner("Generando Reporte 🦜"):
-            st.session_state['reporte_general'] = consultar_agente("Quiero un informe con información sobre los datos.")
+            st.session_state['reporte_general'] = informacion_df.invoke({
+                "pregunta": "Quiero un informe con información sobre los datos.",
+                "df": df,
+            })
 
     # Exhibe el reporte con botón de descarga
     if 'reporte_general' in st.session_state:
@@ -89,7 +97,10 @@ if archivo_cargado:
     # Reporte de estadísticas descriptivas
     if st.button("📄 Reporte de estadísticas descriptivas", key="boton_reporte_estadisticas"):
         with st.spinner("Generando Reporte 🦜"):
-            st.session_state['reporte_estadisticas'] = consultar_agente("Quiero un Reporte de estadísticas descriptivas")
+            st.session_state['reporte_estadisticas'] = resumen_estadistico.invoke({
+                "pregunta": "Quiero un Reporte de estadísticas descriptivas.",
+                "df": df,
+            })
 
     # Exhibe el reporte almacenado con opción de descarga
     if 'reporte_estadisticas' in st.session_state:
